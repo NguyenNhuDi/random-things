@@ -5,6 +5,13 @@ class Fraction:
         
         if denom == 0:
             raise ZeroDivisionError
+        
+        maxi = max(len(str(numer).split('.')[-1]), len(str(denom).split('.')[-1]))
+
+        numer *= 10 ** maxi 
+        denom *= 10 ** maxi
+
+        numer, denom = int(numer), int(denom)
 
         g = gcd(numer, denom)
         
@@ -57,7 +64,7 @@ class Fraction:
 
         return Fraction(numer=numer, denom=denom)
     
-    def __mul__(self, other : "Fraction"):
+    def __mul__(self, other : "Fraction") -> "Fraction":
         return Fraction(numer=(self.numer * other.numer), denom=(self.denom * other.denom))
     
     def __truediv__(self, other : "Fraction") -> "Fraction":
@@ -76,6 +83,8 @@ class Fraction:
     def __itruediv__(self, other : "Fraction") -> "Fraction":
         return self.__truediv__(other)
     
+    def sqrt(self):
+        return Fraction(self.numer ** 0.5, self.denom ** 0.5)
 
     
 if __name__ == '__main__':
@@ -94,3 +103,5 @@ if __name__ == '__main__':
     print(e)
     print(f)
     
+
+    print(Fraction(4, 1).sqrt())
