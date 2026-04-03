@@ -24,10 +24,13 @@ class Fraction:
         b = other.numer * self.denom
         return a <= b 
     
-    def __gt__(self, other : "Fraction"):
+    def __neg__(self) -> "Fraction":
+        return Fraction(-self.numer, -self.denom)
+    
+    def __gt__(self, other : "Fraction") -> bool:
         return not self.__le__(other)
 
-    def __ge__(self, other : "Fraction"):
+    def __ge__(self, other : "Fraction") -> bool:
         return not self.__lt__(other)
     
     def __eq__(self, other : "Fraction") -> bool:
@@ -45,7 +48,7 @@ class Fraction:
 
         return Fraction(numer=numer, denom=denom)
     
-    def __sub__(self, other : "Fraction"):
+    def __sub__(self, other : "Fraction") -> "Fraction":
         a_num = self.numer * other.denom
         b_num = other.numer * self.denom
 
@@ -57,20 +60,20 @@ class Fraction:
     def __mul__(self, other : "Fraction"):
         return Fraction(numer=(self.numer * other.numer), denom=(self.denom * other.denom))
     
-    def __truediv__(self, other : "Fraction"):
+    def __truediv__(self, other : "Fraction") -> "Fraction":
         flip = Fraction(numer=other.denom, denom=other.numer)
         return self.__mul__(flip)
     
-    def __iadd__(self, other : "Fraction"):
+    def __iadd__(self, other : "Fraction") -> "Fraction":
         return self.__add__(other)
     
-    def __isub__(self, other : "Fraction"):
+    def __isub__(self, other : "Fraction") -> "Fraction":
         return self.__sub__(other)
 
-    def __imul__(self, other : "Fraction"):
+    def __imul__(self, other : "Fraction") -> "Fraction":
         return self.__mul__(other)
     
-    def __itruediv__(self, other : "Fraction"):
+    def __itruediv__(self, other : "Fraction") -> "Fraction":
         return self.__truediv__(other)
     
 
