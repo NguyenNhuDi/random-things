@@ -61,6 +61,18 @@ class Fraction:
         flip = Fraction(numer=other.denom, denom=other.numer)
         return self.__mul__(flip)
     
+    def __iadd__(self, other : "Fraction"):
+        return self.__add__(other)
+    
+    def __isub__(self, other : "Fraction"):
+        return self.__sub__(other)
+
+    def __imul__(self, other : "Fraction"):
+        return self.__mul__(other)
+    
+    def __itruediv__(self, other : "Fraction"):
+        return self.__truediv__(other)
+    
 
     
 if __name__ == '__main__':
